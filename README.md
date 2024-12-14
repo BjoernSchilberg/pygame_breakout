@@ -2,6 +2,8 @@
 
 - See it in action: <https://bjoernschilberg.github.io/pygame_breakout/>
 
+Press `p` to cycle through the colors.
+
 ## Test
 
 ```shell
