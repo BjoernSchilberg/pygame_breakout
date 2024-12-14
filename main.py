@@ -34,6 +34,10 @@ LCD_FG = hex_to_rgb("#000000")
 AMBER_BG = hex_to_rgb("#FF8000")
 AMBER_FG = hex_to_rgb("#000000")
 
+# Blue
+BLUE_BG = (0, 125, 255)
+BLUE_FG = (255, 255, 255)
+
 
 # Nokia 3310 color palettes
 PALETTES = [
@@ -42,6 +46,7 @@ PALETTES = [
     (NOKIA_GRAY_BG, NOKIA_GRAY_FG),
     (LCD_BG, LCD_FG),
     (AMBER_BG, AMBER_FG),
+    (BLUE_BG, BLUE_FG),
 ]
 current_palette_index = 0
 BG_COLOR, FG_COLOR = PALETTES[current_palette_index]
