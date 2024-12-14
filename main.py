@@ -8,9 +8,33 @@ pygame.init()
 # Screen dimensions
 WIDTH, HEIGHT = 800, 600
 
-# Colors
-BG_COLOR = (0, 125, 255)
-FG_COLOR = (255, 255, 255)
+
+def hex_to_rgb(hex_color):
+    hex_color = hex_color.lstrip("#")
+    return tuple(int(hex_color[i : i + 2], 16) for i in (0, 2, 4))
+
+
+# Nokia 3310 original
+NOKIA_ORIGINAL_BG = hex_to_rgb("#c7f0d8")
+NOKIA_ORIGINAL_FG = hex_to_rgb("#43523d")
+
+# Nokia 3310 harsh
+NOKIA_HARSH_BG = hex_to_rgb("#9bc700")
+NOKIA_HARSH_FG = hex_to_rgb("#2b3f09")
+
+# Nokia 3310 gray
+NOKIA_GRAY_BG = hex_to_rgb("#879188")
+NOKIA_GRAY_FG = hex_to_rgb("#1a1914")
+
+
+# Nokia 3310 color palettes
+PALETTES = [
+    (NOKIA_ORIGINAL_BG, NOKIA_ORIGINAL_FG),  # Default palette
+    (NOKIA_HARSH_BG, NOKIA_HARSH_FG),
+    (NOKIA_GRAY_BG, NOKIA_GRAY_FG),
+]
+current_palette_index = 0
+BG_COLOR, FG_COLOR = PALETTES[current_palette_index]
 
 
 class Paddle:
@@ -107,6 +131,8 @@ class Game:
         import asyncio  # Required for pygbag compatibility
 
         async def main_loop():
+            global BG_COLOR, FG_COLOR, current_palette_index
+
             while self.running:
                 self.screen.fill(BG_COLOR)
 
@@ -114,6 +140,13 @@ class Game:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         self.running = False
+                    # Cycle through color palettes
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_p:
+                            current_palette_index = (current_palette_index + 1) % len(
+                                PALETTES
+                            )
+                            BG_COLOR, FG_COLOR = PALETTES[current_palette_index]
 
                 # Move paddle and ball
                 keys = pygame.key.get_pressed()
