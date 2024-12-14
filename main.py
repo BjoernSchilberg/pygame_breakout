@@ -26,12 +26,22 @@ NOKIA_HARSH_FG = hex_to_rgb("#2b3f09")
 NOKIA_GRAY_BG = hex_to_rgb("#879188")
 NOKIA_GRAY_FG = hex_to_rgb("#1a1914")
 
+# LCD
+LCD_BG = hex_to_rgb("#C0C0C0")
+LCD_FG = hex_to_rgb("#000000")
+
+# AMBER
+AMBER_BG = hex_to_rgb("#FF8000")
+AMBER_FG = hex_to_rgb("#000000")
+
 
 # Nokia 3310 color palettes
 PALETTES = [
     (NOKIA_ORIGINAL_BG, NOKIA_ORIGINAL_FG),  # Default palette
     (NOKIA_HARSH_BG, NOKIA_HARSH_FG),
     (NOKIA_GRAY_BG, NOKIA_GRAY_FG),
+    (LCD_BG, LCD_FG),
+    (AMBER_BG, AMBER_FG),
 ]
 current_palette_index = 0
 BG_COLOR, FG_COLOR = PALETTES[current_palette_index]
