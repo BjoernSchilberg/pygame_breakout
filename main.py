@@ -1,5 +1,6 @@
 import pygame
 import sys
+import platform
 
 # Initialize pygame
 pygame.init()
@@ -96,7 +97,10 @@ class Game:
 
         # Check for game over
         if self.ball.rect.top > HEIGHT:
-            print("Game Over! Restarting...")
+            if sys.platform == "emscripten":
+                platform.console.log("Game Over! Restarting...")
+            else:
+                print("Game Over! Restarting...")
             self.reset_game()
 
     def run(self):
